@@ -91,7 +91,8 @@ const Login = ({ setLoggedIn }) => {
 			</form>
 			<div>
 				<h1 className="text-sm font-bold mt-10">
-					<a href="/" className="underline text-gray-800">
+					Don't have an Account?
+					<a href="/" className="underline text-gray-800 ml-1">
 						Click here for New Registration
 					</a>
 				</h1>
