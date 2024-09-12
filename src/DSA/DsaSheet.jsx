@@ -4,7 +4,6 @@ import { Star, Search } from "lucide-react";
 const topics = [
 	{
 		name: "Arrays & Hashing",
-		problemCount: 92,
 		problems: [
 			{
 				title: "Two Sum",
@@ -379,7 +378,6 @@ const topics = [
 	},
 	{
 		name: "Two Pointers",
-		problemCount: 29,
 		problems: [
 			{
 				title: "Longest Palindromic Substring",
@@ -702,7 +700,6 @@ const topics = [
 	},
 	{
 		name: "Sliding Window",
-		problemCount: 22,
 		problems: [
 			{
 				title: "Best Time to Buy and Sell Stock",
@@ -729,7 +726,6 @@ const topics = [
 	},
 	{
 		name: "Stack",
-		problemCount: 23,
 		problems: [
 			{
 				title: "Valid Parentheses",
@@ -753,7 +749,6 @@ const topics = [
 	},
 	{
 		name: "Binary Search",
-		problemCount: 25,
 		problems: [
 			{
 				title: "Binary Search",
@@ -779,7 +774,6 @@ const topics = [
 	},
 	{
 		name: "Linked List",
-		problemCount: 31,
 		problems: [
 			{
 				title: "Reverse Linked List",
@@ -804,7 +798,6 @@ const topics = [
 	},
 	{
 		name: "Trees",
-		problemCount: 55,
 		problems: [
 			{
 				title: "Invert Binary Tree",
@@ -830,7 +823,6 @@ const topics = [
 	},
 	{
 		name: "Heap / Priority Queue",
-		problemCount: 23,
 		problems: [
 			{
 				title: "Kth Largest Element in a Stream",
@@ -856,7 +848,6 @@ const topics = [
 	},
 	{
 		name: "Backtracking",
-		problemCount: 22,
 		problems: [
 			{
 				title: "Subsets",
@@ -880,7 +871,6 @@ const topics = [
 	},
 	{
 		name: "Tries",
-		problemCount: 4,
 		problems: [
 			{
 				title: "Implement Trie (Prefix Tree)",
@@ -906,7 +896,6 @@ const topics = [
 	},
 	{
 		name: "Graphs",
-		problemCount: 43,
 		problems: [
 			{
 				title: "Number of Islands",
@@ -930,7 +919,6 @@ const topics = [
 	},
 	{
 		name: "Advanced Graphs",
-		problemCount: 13,
 		problems: [
 			{
 				title: "Reconstruct Itinerary",
@@ -956,7 +944,6 @@ const topics = [
 	},
 	{
 		name: "1-D Dynamic Programming",
-		problemCount: 41,
 		problems: [
 			{
 				title: "Climbing Stairs",
@@ -981,7 +968,6 @@ const topics = [
 	},
 	{
 		name: "2-D Dynamic Programming",
-		problemCount: 41,
 		problems: [
 			{
 				title: "Unique Paths",
@@ -1007,7 +993,6 @@ const topics = [
 	},
 	{
 		name: "Greedy",
-		problemCount: 29,
 		problems: [
 			{
 				title: "Maximum Subarray",
@@ -1031,7 +1016,6 @@ const topics = [
 	},
 	{
 		name: "Intervals",
-		problemCount: 10,
 		problems: [
 			{
 				title: "Merge Intervals",
@@ -1056,7 +1040,6 @@ const topics = [
 	},
 	{
 		name: "Math & Geometry",
-		problemCount: 32,
 		problems: [
 			{
 				title: "Rotate Image",
@@ -1121,6 +1104,12 @@ const DSASheet = () => {
 		localStorage.setItem("completed", JSON.stringify(updatedCompleted));
 	};
 
+	const getCompletedCount = (topicName) => {
+		return completed[topicName]
+			? Object.values(completed[topicName]).filter(Boolean).length
+			: 0;
+	};
+
 	return (
 		<div className="w-full min-h-screen mx-auto p-6 bg-gray-900 text-white">
 			<div className="mb-6">
@@ -1174,7 +1163,7 @@ const DSASheet = () => {
 													problem.title
 												)
 											}
-											className="mr-2 cursor-pointer"
+											className="ml-4 cursor-pointer"
 										/>
 									</td>
 									<td>
@@ -1199,7 +1188,7 @@ const DSASheet = () => {
 									>
 										{problem.difficulty}
 									</td>
-									<td className="cursor-pointer">
+									<td className="ml-4 cursor-pointer">
 										{problem.hasSolution && "▶️"}
 									</td>
 									<td>
@@ -1232,13 +1221,8 @@ const DSASheet = () => {
 						>
 							<span>{topic.name}</span>
 							<span>
-								(
-								{completed[topic.name]
-									? Object.values(
-											completed[topic.name]
-									  ).filter(Boolean).length
-									: 0}{" "}
-								/ {topic.problemCount})
+								({getCompletedCount(topic.name)} /{" "}
+								{topic.problems.length})
 							</span>
 						</button>
 						{expandedTopic === topic.name && (
