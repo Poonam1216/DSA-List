@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setLoggedIn }) => {
 	const [formData, setFormData] = useState({ email: "", password: "" });
 
 	const handleChange = (e) => {
@@ -12,6 +12,10 @@ const Login = () => {
 	};
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		setLoggedIn(false);
+	}, [setLoggedIn]);
 
 	const handleForm = async (e) => {
 		e.preventDefault();
@@ -27,6 +31,7 @@ const Login = () => {
 				email: "",
 				password: "",
 			});
+			setLoggedIn(true);
 
 			setTimeout(() => {
 				navigate("/home");
@@ -84,6 +89,13 @@ const Login = () => {
 					Login
 				</button>
 			</form>
+			<div>
+				<h1 className="text-sm font-bold mt-10">
+					<a href="/" className="underline text-gray-800">
+						Click here for New Registration
+					</a>
+				</h1>
+			</div>
 		</div>
 	);
 };

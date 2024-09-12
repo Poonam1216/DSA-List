@@ -3,6 +3,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import DSASheet from "./DSA/DsaSheet.jsx";
 import { useState } from "react";
+import ProtectedRoute from "./ProtectedRoutes.jsx";
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -11,15 +12,16 @@ function App() {
 			<Router>
 				<Routes>
 					<Route path="/" element={<Signup />} />
-					<Route path="/login" element={<Login />} />
+					<Route
+						path="/login"
+						element={<Login setLoggedIn={setLoggedIn} />}
+					/>
 					<Route
 						path="/home"
 						element={
-							loggedIn ? (
+							<ProtectedRoute loggedIn={loggedIn}>
 								<DSASheet />
-							) : (
-								<Login setLoggedIn={setLoggedIn} />
-							)
+							</ProtectedRoute>
 						}
 					/>
 				</Routes>
